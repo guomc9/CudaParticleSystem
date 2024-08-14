@@ -7,75 +7,39 @@
 #include <sstream>
 #include <vector>
 
-class MeshImporter
-{
-    private:
-        std::vector<float3> _vertices;
-        std::vector<float3> _normals;
-        std::vector<uint3> _indices;
+// class Importer {
+//     private:
+//         std::string filename;
+//     public:
+//         Importer(const std::string& filename) : filename(filename) {}
 
-    public:
-        bool load(const std::string &filename)
-        {
-            std::ifstream file(filename);
-            if (!file.is_open())
-            {
-                std::cerr << "Failed to open file: " + filename << std::endl;
-                return false;
-            }
+//         std::vector<Point> importPoints()
+//         {
+//             std::vector<Point> points;
+//             std::ifstream inFile(filename);
+//             std::string line;
+            
+//             if (!inFile.is_open()) {
+//                 std::cerr << "Failed to open file: " << filename << std::endl;
+//                 return points;
+//             }
 
-            std::string line;
-            while (getline(file, line))
-            {
-                std::stringstream ss(line);
-                std::string prefix;
-                ss >> prefix;
-                if (prefix == "v")
-                {
-                    float x, y, z;
-                    ss >> x >> y >> z;
-                    _vertices.push_back(make_float3(x, y, z));
-                }
-                else if (prefix == "f")
-                {
-                    int v1, v2, v3;
-                    ss >> v1 >> v2 >> v3;
-                    _indices.push_back(make_uint3(v1 - 1, v2 - 1, v3 - 1));
-                }
-                else if (prefix == "vn")
-                {
-                    float x, y, z;
-                    ss >> x >> y >> z;
-                    _normals.push_back(make_float3(x, y, z));
-                }
-            }
-            file.close();
-            return true;
-        }
-
-        inline const float3* get_vertices() const 
-        {
-            return _vertices.data();
-        }
-        
-        inline const float3* get_normals() const 
-        {
-            return _normals.data();
-        }
-
-        inline const uint3* get_indices() const
-        {
-            return _indices.data();
-        }
-
-        inline uint64_t get_vertices_size() const
-        {
-            return _vertices.size();
-        }
-
-        inline uint64_t get_shape_size() const
-        {
-            return _indices.size();
-        }
-};
+//             while (std::getline(inFile, line) && line != "end_header") {
+//                 // Skip header lines
+//             }
+            
+//             while (std::getline(inFile, line)) {
+//                 std::istringstream iss(line);
+//                 Point pt;
+//                 int r, g, b;
+//                 iss >> pt.x >> pt.y >> pt.z >> r >> g >> b;
+//                 pt.r = static_cast<unsigned char>(r);
+//                 pt.g = static_cast<unsigned char>(g);
+//                 pt.b = static_cast<unsigned char>(b);
+//                 points.push_back(pt);
+//             }
+//             inFile.close();
+//             return points;
+//         }
+// }
 #endif

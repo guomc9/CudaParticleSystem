@@ -23,7 +23,16 @@ class BlinnPhong
 		void free();
 };
 
-
+class Light
+{
+	private:
+		float3 _pos;
+		float3 _emit;
+	
+	public:
+		Light(const float3 pos, const float3 emit);
+		
+};
 
 class Rasterizer
 {
