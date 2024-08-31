@@ -20,7 +20,7 @@ The framework features tiled-based rasterization(TBR) for efficient rendering, a
 ### Installation
 #### Clone the repository
 ```shell
-git clone https://github.com/yourusername/CudaParticleSystem.git
+git clone https://github.com/guomc9/CudaParticleSystem.git
 cd CudaParticleSystem
 ```
 #### Build the project
